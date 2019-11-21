@@ -5,9 +5,6 @@ use strict;
 use File::Find;
 use File::Basename;
 use File::Path qw(make_path);
-use Image::Magick;
-
-my $image = Image::Magick->new;
 
 my @thumbnailable_extensions = qw(
 .pdf
@@ -38,10 +35,6 @@ sub processFiles {
 }
 
 find(\&processFiles, @ARGV);
-
-print "$num_exist thumbnails existed, and $num_to_create needed to be created\n";
-
-print "Copy the above URLs into emacs and do C-c ! on them.\n\n";
 
 my $duration = time - $timestart;
 print "Execution time: $duration s\n";
