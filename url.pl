@@ -21,7 +21,7 @@ sub urlifyFileName {
     my ($sourceImagePath) = @_;
     # create a URL for the image
     $sourceImagePath =~ s|$home_path|https:/|;
-    print "$sourceImagePath\n";
+    print "curl $sourceImagePath > $sourceImagePath\n";
 }
 
 sub processFiles {
