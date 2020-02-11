@@ -17,6 +17,9 @@ my $home_path = '/home/thundergoblin';
 
 my ($num_exist, $num_to_create) = (0, 0);
 
+my @curlOutput;
+my @rmOutput;
+
 sub urlifyFileName {
     my ($sourceImagePath) = @_;
     # create a URL for the image
@@ -35,18 +38,16 @@ sub processFiles {
 
     # check if the file is an image file that we'd like to thumbnail
     my $pattern_match_extensions = join('|',@thumbnailable_extensions);
-    my @curlOutput;
-    my @rmOutput;
 
     if ( basename($File::Find::name) =~ /($pattern_match_extensions)\Z/i ) {
 	push(@curlOutput, urlifyFileName($File::Find::name));
 	push(@rmOutput,rmFileName($File::Find::name));
     }
-    print @curlOutput;
-    print @rmOutput;
 }
 
 find(\&processFiles, @ARGV);
+print @curlOutput;
+print @rmOutput;
 
 my $duration = time - $timestart;
 print "Execution time: $duration s\n";
