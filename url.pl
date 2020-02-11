@@ -23,17 +23,27 @@ sub urlifyFileName {
     $sourceImagePath =~ s|$home_path|https:/|;
     # get the filename (works for paths with /) thanks https://stackoverflow.com/a/35838395/194309
     my $final_filename = (split '/', $sourceImagePath)[-1];
-    print "curl $sourceImagePath > $final_filename\n";
+    return "curl $sourceImagePath > $final_filename\n";
+}
+
+sub rmFileName {
+    my ($osImagePath) = @_;
+    return "rm $osImagePath\n";
 }
 
 sub processFiles {
 
     # check if the file is an image file that we'd like to thumbnail
     my $pattern_match_extensions = join('|',@thumbnailable_extensions);
+    my @curlOutput;
+    my @rmOutput;
 
     if ( basename($File::Find::name) =~ /($pattern_match_extensions)\Z/i ) {
-	urlifyFileName($File::Find::name);
+	push(@curlOutput, urlifyFileName($File::Find::name));
+	push(@rmOutput,rmFileName($File::Find::name));
     }
+    print @curlOutput;
+    print @rmOutput;
 }
 
 find(\&processFiles, @ARGV);
