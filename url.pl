@@ -43,7 +43,7 @@ sub rrmFileName {
 sub processFiles {
 
     # check if the file is an image file that we'd like to thumbnail
-    my $pattern_match_extensions = '(\d){8}_(\d){6}_[a-z|A-Z]+_(\d){10}\.('.join('|',@thumbnailable_extensions).')';
+    my $pattern_match_extensions = '(\d){8}_(\d){6}_[a-z|A-Z]+_(\d){6,10}\.('.join('|',@thumbnailable_extensions).')';
 
     if ( basename($File::Find::name) =~ /($pattern_match_extensions)\Z/i ) {
 	push(@curlOutput, urlifyFileName($File::Find::name) . "\n");
