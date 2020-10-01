@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Boof Password:"
+AuthUserFile /home/thundergoblin/.htpasswd
+Require valid-user
