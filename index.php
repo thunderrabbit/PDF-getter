@@ -10,7 +10,7 @@
     <pre>      <a href="?C=N;O=D">Name</a>                           <a href="?C=M;O=A">Last modified</a>
 <?php
 // https://stackoverflow.com/a/6155608/194309
-// output all files and directories except for '.' and '..'
+// output PDF files and '.' and '..'
 date_default_timezone_set("Japan");
 foreach (new DirectoryIterator('.') as $fileInfo) {
     if($fileInfo->isDot())
