@@ -12,7 +12,7 @@
 // https://stackoverflow.com/a/6155608/194309
 // output PDF files and '.' and '..'
   date_default_timezone_set("Japan");
-
+  $found_files_array = array();            // so we can sort them
   foreach (new DirectoryIterator('.') as $fileInfo)
   {
     if($fileInfo->isDot())
@@ -23,11 +23,20 @@
     else if($fileInfo->getExtension() == "pdf")
     {
         $filename = $fileInfo->getFilename();
-        echo '      <a href="' . $filename . '">' . $filename . '</a> ' . date(DATE_RFC2822, $fileInfo->getMTime()) . "\n";
+	$array_key = $fileInfo->getMTime();     //  I believe if we sort by this, they will be in date order
+	$found_files_array[$array_key]['name'] = $filename;
+	$found_files_array[$array_key]['date'] = date(DATE_RFC2822, $fileInfo->getMTime());
     }
   }
+
+  asort($found_files_array);   // automagically sorts them by key so they end up with newest files at the bottom
+  foreach($found_files_array as $found_file)
+  {
+      echo '      <a href="' . $found_file['name'] . '">' . $found_file['name'] . '</a> ' . $found_file['date'] . "\n";
+  }
 ?>	
-      <hr></pre>
+
+<hr></pre>
 </body></html>
 
 
