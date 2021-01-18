@@ -11,8 +11,10 @@
 <?php
 // https://stackoverflow.com/a/6155608/194309
 // output PDF files and '.' and '..'
-date_default_timezone_set("Japan");
-foreach (new DirectoryIterator('.') as $fileInfo) {
+  date_default_timezone_set("Japan");
+
+  foreach (new DirectoryIterator('.') as $fileInfo)
+  {
     if($fileInfo->isDot())
     {
         $filename = $fileInfo->getFilename();
@@ -23,8 +25,7 @@ foreach (new DirectoryIterator('.') as $fileInfo) {
         $filename = $fileInfo->getFilename();
         echo '      <a href="' . $filename . '">' . $filename . '</a> ' . date(DATE_RFC2822, $fileInfo->getMTime()) . "\n";
     }
-
-}
+  }
 ?>	
       <hr></pre>
 </body></html>
