@@ -23,9 +23,10 @@
     else if($fileInfo->getExtension() == "pdf")
     {
         $filename = $fileInfo->getFilename();
-	$array_key = $fileInfo->getMTime();     //  I believe if we sort by this, they will be in date order
-	$found_files_array[$array_key]['name'] = $filename;
-	$found_files_array[$array_key]['date'] = date(DATE_RFC2822, $fileInfo->getMTime());
+        $found_files_array[] = array(
+               'name' => $filename,
+               'date' => date(DATE_RFC2822, $fileInfo->getMTime()),
+             );
     }
   }
 
