@@ -6,6 +6,7 @@
   <body>
     <h1>Babychan's Index of /pdf</h1>
     <h3>Look for the newest files at the top</h3>
+    <h3 style="color:red">Click to <a href='/pdf/wipe_pdfs.php'>Permanently DELETE all PDFs in this list</a>. DANGER</h3>
     <h3>I love you!  BooooooOOOOoooooooffff!!!</h3>
     <pre>      <a href="?C=N;O=D">Name</a>                           <a href="?C=M;O=A">Last modified</a>
 <?php
